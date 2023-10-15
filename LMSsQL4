@@ -1,0 +1,48 @@
+create table exam
+(
+    exam_id   SERIAL PRIMARY KEY UNIQUE NOT NULL,
+    exam_name VARCHAR  NOT NULL,
+    data_exam DATE
+);
+ALTER TABLE exam
+    ADD CONSTRAINT uk_exam_id UNIQUE (exam_id);
+
+ALTER TABLE exam
+    ADD CONSTRAINT exam_id_pr PRIMARY KEY (exam_id);
+
+
+CREATE TABLE person(
+    id SERIAL PRIMARY KEY,
+    person_First_name VARCHAR,
+    person_last_name VARCHAR
+    );
+
+CREATE TABLE passport (
+                          passport_id INT PRIMARY KEY,
+                          serial_number INT NOT NULL,
+                          registration_date DATE,
+                          person_id INT,
+                          FOREIGN KEY (person_id) REFERENCES person (id)
+);
+
+CREATE TABLE book (
+                      book_id INT PRIMARY KEY,
+                      title VARCHAR(255) NOT NULL,
+                      author VARCHAR(255) NOT NULL,
+                      publication_date DATE,
+                      price DECIMAL(8,2),
+                      genre VARCHAR(255)
+);
+
+ALTER TABLE book
+    ADD weight DECIMAL(5,2) CHECK (weight > 0 AND weight < 100);
+
+
+CREATE TABLE student(
+    id SERIAL PRIMARY KEY ,
+    full_name VARCHAR ,
+    grauation SERIAL
+);
+
+ALTER TABLE student
+    ALTER COLUMN id DROP DEFAULT;
